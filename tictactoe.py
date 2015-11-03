@@ -139,8 +139,17 @@ def next_turn(last_played_num):
         comp_turn()
     elif last_played_num == comp_num:
         user_turn()
-        
 
+
+def place_letter(current_num, current_input):
+# Takes comp_num and comp_choice (or user_num and user_choice)...
+# ...and inputs that into the global board_arr
+# Current_input is either randomly chosen by computer or input by user
+# Current_num is either user_num or comp_num
+    index = np.where(tutorial_arr == current_input)
+    board_arr[index] = current_num
+
+    
 # TODO: LIST OPEN SLOTS ON ASCII BOARD
 def user_turn():
     display_board()
