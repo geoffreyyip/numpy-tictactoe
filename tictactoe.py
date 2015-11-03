@@ -91,3 +91,67 @@ def return_open_slots():
             
     return open_slots
 
+
+def terminate(last_played_num):
+# if last played number is user's number, declares user to be winner
+# if last played number is comp's number, declares comp to be winner
+# if return_open_slots() came up blank, declares draw
+    if last_played_num == user_num:
+        print("You win!")
+    elif last_played_num == comp_num:
+        print("You lost!")
+    elif last_played_num == "Draw!":
+        print("Draw!")
+        
+    input("Play again? \nPress Enter to play again.")
+    initialize()
+        
+def check_for_winner(last_played_num):
+# Scans rows, columns, and diagonals for last-played number
+# Ex. if 1 was the last number played, this function would scan for 1's
+# Declares draw is open_slots is blank
+# Else proceeds to next turn
+    
+    if return_open_slots == []:
+    # Checks if no open slots
+        terminate("Draw!")
+        
+    for i in range(0, 3):
+    # Checks rows and columns for match
+        rows_win = (board_arr[i, :] == last_played_num).all()
+        cols_win = (board_arr[:, i] == last_played_num).all()
+        
+        if rows_win or cols_win:
+            termiante(last_played_num)
+            
+    diag1_win = (np.diag(board_arr) == last_played_num).all()
+    diag2_win = (np.diag(np.fliplr(board_arr)) == last_played_num).all()
+    
+    if diag1_win or diag2_win:
+    # Checks both diagonals for match
+        terminate(last_played_num)
+            
+    next_turn(last_played_num)
+    
+    
+def next_turn(last_played_num):
+    if last_played_num == user_num:
+        comp_turn()
+    elif last_played_num == comp_num:
+        user_turn()
+        
+
+# TODO: LIST OPEN SLOTS ON ASCII BOARD
+def user_turn():
+    display_board()
+    
+    user_input = input("Pick an open slot: ")
+    user_input = int(user_input)
+    
+    if user_input in return_open_slots():
+        place_letter(user_num, user_input)
+    else:
+        print("That's not a open slots.")
+        user_turn()
+        
+    check_for_winner(user_num)
