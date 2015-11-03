@@ -33,16 +33,17 @@ def initialize():
     global comp_num
     
     # Flip a coin to see who goes first with X's
-    if np.random.randint(0, 2) == 0:
+    coin_flip = np.random.randint(0, 2)
+    if  coin_flip == 0:
         user_num = 0
         comp_num = 1
-        print("Computer goes first.")
+        print("Computer goes first. Your letter is O.")
         comp_turn()
         
-    elif np.random.randint(0, 2) == 1:
+    elif coin_flip == 1:
         user_num = 1
         comp_num = 0
-        print("You go first.")
+        print("You go first. Your letter is X.")
         user_turn()
 
         
@@ -53,7 +54,7 @@ def display_board():
     # loops through flattened board array to scan for 0's, 1's and 3's
     # converts them into O's, X's, and blank spots
     internal_arr = board_arr.flatten()
-    for i in range(0, 9)
+    for i in range(0, 9):
        if internal_arr[i] == 0:
            board_list.append('O')
        elif internal_arr[i] == 1:
@@ -86,7 +87,7 @@ def return_open_slots():
     # is spot taken by 3's? If so, then spot is open.
     # appends (i + 1) because inputs are indexed to 1
     for i in range(0, len(flat_bool_arr)):
-        if flat_bool_arr == True:
+        if flat_bool_arr[i] == True:
             open_slots.append(i + 1)
             
     return open_slots
@@ -122,7 +123,7 @@ def check_for_winner(last_played_num):
         cols_win = (board_arr[:, i] == last_played_num).all()
         
         if rows_win or cols_win:
-            termiante(last_played_num)
+            terminate(last_played_num)
             
     diag1_win = (np.diag(board_arr) == last_played_num).all()
     diag2_win = (np.diag(np.fliplr(board_arr)) == last_played_num).all()
@@ -166,10 +167,12 @@ def user_turn():
     check_for_winner(user_num)
     
 
-def comp_turn()
+def comp_turn():
 # Randomly chooses from open_slots to place its letter    
     open_slots = return_open_slots()
-    comp_choice = random.choice(open_slots)
+    comp_input = random.choice(open_slots)
     place_letter(comp_num, comp_input)
     check_for_winner(comp_num)
     
+
+initialize()
