@@ -13,7 +13,9 @@
 import numpy as np
 import random
 
-initialize():
+# Creates blank 3x3 array. Randomizes who goes first.
+# TODO: ADD A TUTORIAL PROGRAM
+def initialize():
     global board_arr
     global tutorial_arr
     
@@ -42,3 +44,32 @@ initialize():
         comp_num = 0
         print("You go first.")
         user_turn()
+
+        
+# Converts internal numpy array into a visual ASCII board.       
+def display_board():
+    board_list = []
+    
+    # loops through flattened board array to scan for 0's, 1's and 3's
+    # converts them into O's, X's, and blank spots
+    internal_arr = board_arr.flatten()
+    for i in range(0, 9)
+       if internal_arr[i] == 0:
+           board_list.append('O')
+       elif internal_arr[i] == 1:
+           board_list.append('X')
+       elif internal_arr[i] == 3:
+           board_list.append(' ')
+       else:
+           raise Exception("display_board Error")
+    
+    # inputs O's, X's, and blank spots into an ASCII tictactoe board
+    print("""
+ {} | {} | {}
+---+---+---
+ {} | {} | {}
+---+---+---
+ {} | {} | {}
+
+""".format(*board_list))
+    
