@@ -73,3 +73,21 @@ def display_board():
 
 """.format(*board_list))
     
+    
+def return_open_slots():
+# Checks for open slots using Boolean arrays.
+# Important when checking for winner (if draw) and checking if user's input...
+# ...is valid
+    open_slots = []
+
+    bool_arr = (board_arr == 3)
+    flat_bool_arr = bool_arr.flatten()
+    
+    # is spot taken by 3's? If so, then spot is open.
+    # appends (i + 1) because inputs are indexed to 1
+    for i in range(0, len(flat_bool_arr)):
+        if flat_bool_arr == True:
+            open_slots.append(i + 1)
+            
+    return open_slots
+
