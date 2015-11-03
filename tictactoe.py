@@ -164,3 +164,12 @@ def user_turn():
         user_turn()
         
     check_for_winner(user_num)
+    
+
+def comp_turn()
+# Randomly chooses from open_slots to place its letter    
+    open_slots = return_open_slots()
+    comp_choice = random.choice(open_slots)
+    place_letter(comp_num, comp_input)
+    check_for_winner(comp_num)
+    
