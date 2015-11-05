@@ -4,12 +4,6 @@
 
 # uses four global variables - board_arr, tutorial_arr, user_num, and comp_num
 
-# Alright, time to test a partial commit
-
-# This comment gets committed.
-
-# This comment does not get committed.
-
 import numpy as np
 import random
 
